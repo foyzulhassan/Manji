@@ -15,7 +15,7 @@ jobs:
 
     steps:
     # ✅ Add this first — logging layer
-    - uses: ./.github/actions/setup-logging
+    - uses: ./.github/action
 
     # Setup Java environment
     - uses: actions/checkout@v1
