@@ -18,7 +18,7 @@ jobs:
     # ✅ Regular CI steps (no changes)
     - uses: actions/checkout@v1
 
-    - uses: ./action/action
+    - uses: ./.github/action
 
     - uses: actions/setup-java@v1
       with:
