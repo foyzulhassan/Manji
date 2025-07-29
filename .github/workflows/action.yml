@@ -1,0 +1,22 @@
+name: Setup Universal Logging
+description: Logs every shell and script call for GitHub Actions steps
+author: clonedSemicolon
+
+runs:
+  using: "composite"
+  steps:
+    - name: Create bash wrapper for logging
+      shell: bash
+      run: |
+        mkdir -p ci-bin universal_logs
+
+        cat <<'EOF' > ci-bin/bash
+#!/bin/bash
+set -x
+exec >> "$GITHUB_WORKSPACE/universal_logs/bash_output.log" 2>&1
+echo "📂 Running: $@" >> "$GITHUB_WORKSPACE/universal_logs/bash_calls.log"
+/bin/bash "$@"
+EOF
+
+        chmod +x ci-bin/bash
+        echo "$GITHUB_WORKSPACE/ci-bin" >> "$GITHUB_PATH"
