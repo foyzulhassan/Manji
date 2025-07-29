@@ -14,29 +14,30 @@ jobs:
       ACTIONS_RUNNER_DEBUG: true
 
     steps:
-    # ✅ Add this first — logging layer
+    # ✅ Inject logging layer (must come first)
     - uses: ./.github/action
 
-    # Setup Java environment
+    # ✅ Regular CI steps (no changes)
     - uses: actions/checkout@v1
+
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
 
-    # Setup flutter
     - uses: subosito/flutter-action@v1
       with:
         channel: 'stable'
         flutter-version: '2.0.1'
 
     - run: flutter pub get
+
     - run: flutter format --set-exit-if-changed .
 
-    # Uncomment for further testing/building
+    # Optional: Uncomment to test more
     # - run: flutter test
     # - run: flutter build apk
 
-    # ✅ Upload captured logs
+    # ✅ Upload captured shell logs
     - name: Upload shell logs
       uses: actions/upload-artifact@v4
       with:
