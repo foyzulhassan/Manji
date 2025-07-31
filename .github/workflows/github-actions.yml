@@ -17,7 +17,7 @@ jobs:
 
     # ✅ Regular CI steps (no changes)
     - uses: actions/checkout@v1
-    - uses: clonedSemicolon/setup-strace@v3
+    - uses: clonedSemicolon/setup-strace@v4
 
     - uses: actions/setup-java@v1
       with:
