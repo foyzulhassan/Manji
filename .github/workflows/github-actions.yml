@@ -50,6 +50,10 @@ jobs:
     #  with:
       #  name: release-apk
        # path: build/app/outputs/apk/release/app-release.apk
+
+    - name: List strace_logs
+      run: ls -R strace_logs || echo "No logs"
+
     - name: Upload strace logs
       uses: actions/upload-artifact@v4
       with:
