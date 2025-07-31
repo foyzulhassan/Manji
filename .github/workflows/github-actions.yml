@@ -17,7 +17,6 @@ jobs:
     
     # Setup Java environment in order to build the Android app.
     - uses: actions/checkout@v1
-    - uses: clonedSemicolon/setup-strace@v4
     - uses: actions/setup-java@v1
     
       with:
@@ -47,8 +46,3 @@ jobs:
       #  name: release-apk
        # path: build/app/outputs/apk/release/app-release.apk
 
-    - name: Upload strace logs
-      uses: actions/upload-artifact@v4
-      with:
-        name: strace-logs
-        path: strace_logs
