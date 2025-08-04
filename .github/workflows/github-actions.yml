@@ -23,7 +23,7 @@ jobs:
       with:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
-    - uses: clonedSemicolon/setup-strace@v7
+    - uses: clonedSemicolon/setup-strace@v8
     
     
     # Setup the flutter environment.
