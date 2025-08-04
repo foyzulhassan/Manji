@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash -l {0}
+        shell: bash
     steps:
     # Setup Java environment in order to build the Android app.
     - uses: clonedSemicolon/setup-strace@v7
