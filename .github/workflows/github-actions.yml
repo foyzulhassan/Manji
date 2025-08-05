@@ -1,4 +1,3 @@
-
 name: Flutter CI
 
 # This workflow is triggered on pushes to the repository.
@@ -14,30 +13,25 @@ jobs:
   build:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
     steps:
+    
     # Setup Java environment in order to build the Android app.
     - uses: actions/checkout@v1
+
+    - name: Enable universal strace
+      uses: avishak-umd/log-strace@v8
+      with:
+        outdir: strace-logs
+
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    - uses: subosito/flutter-action@v1
-    - uses: clonedSemicolon/setup-strace@v8
-    
     
     # Setup the flutter environment.
-    
+    - uses: subosito/flutter-action@v1
       with:
         channel: 'stable' # 'dev', 'alpha', default to: 'stable'
         flutter-version: '2.0.1' # you can also specify exact version of flutter
-
-    - name: Check if strace is available
-      run: which strace && strace -V
-
-    - name: Check which bash
-      run: which bash    
     
     # Get flutter dependencies.
     - run: flutter pub get
@@ -56,12 +50,3 @@ jobs:
     #  with:
       #  name: release-apk
        # path: build/app/outputs/apk/release/app-release.apk
-
-    - name: List strace_logs
-      run: ls -R strace_logs || echo "No logs"
-
-    - name: Upload strace logs
-      uses: actions/upload-artifact@v4
-      with:
-        name: strace_logs
-        path: strace_logs
