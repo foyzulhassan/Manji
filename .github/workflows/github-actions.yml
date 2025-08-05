@@ -37,7 +37,7 @@ jobs:
     
     # Get flutter dependencies.
     - name: flutter pub get with file logger
-      uses: avishak-umd/log-strace@v3
+      uses: avishak-umd/log-strace@v4
       with:
         command: flutter pub get
     
