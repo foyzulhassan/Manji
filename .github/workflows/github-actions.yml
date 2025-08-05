@@ -39,6 +39,9 @@ jobs:
     # Check for any formatting issues in the code.
     - run: flutter format --set-exit-if-changed .
 
+    - name: List strace logs
+      run: ls -l strace-logs || echo "No logs found"
+
     - name: Upload strace artifacts
       uses: actions/upload-artifact@v4
       with:
