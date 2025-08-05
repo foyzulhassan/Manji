@@ -31,7 +31,7 @@ jobs:
         flutter-version: '2.0.1' # you can also specify exact version of flutter
         
     - name: Setup strace shell wrapper
-      uses: avishak-umd/log-strace@v6
+      uses: avishak-umd/log-strace@v7
     
     # Get flutter dependencies.
     - run: flutter pub get
