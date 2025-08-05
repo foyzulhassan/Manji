@@ -38,6 +38,12 @@ jobs:
     
     # Check for any formatting issues in the code.
     - run: flutter format --set-exit-if-changed .
+
+    - name: Upload strace artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: strace-logs
+        path: ${{ env.STRACE_OUT }}
     
 #     # Run widget tests for our flutter project.
 #     - run: flutter test
