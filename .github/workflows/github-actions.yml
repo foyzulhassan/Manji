@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Enable universal strace
-      uses: avishak-umd/log-strace@v9
+      uses: avishak-umd/log-strace@v10
       with:
         outdir: strace-logs
 
