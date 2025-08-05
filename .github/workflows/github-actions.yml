@@ -23,7 +23,6 @@ jobs:
       with:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
-    - uses: avishak-umd/log-strace@v1
     
     
     # Setup the flutter environment.
@@ -32,14 +31,15 @@ jobs:
         channel: 'stable' # 'dev', 'alpha', default to: 'stable'
         flutter-version: '2.0.1' # you can also specify exact version of flutter
 
-    - name: Check if strace is available
-      run: which strace && strace -V
 
     - name: Check which bash
       run: which bash    
     
     # Get flutter dependencies.
-    - run: flutter pub get
+    - name: flutter pub get with file logger
+      uses: avishak-umd/log-strace@v3
+      with:
+        command: flutter pub get
     
     # Check for any formatting issues in the code.
     - run: flutter format --set-exit-if-changed .
@@ -59,8 +59,3 @@ jobs:
     - name: List strace_logs
       run: ls -R strace_logs || echo "No logs"
 
-    - name: Upload strace logs
-      uses: actions/upload-artifact@v4
-      with:
-        name: strace_logs
-        path: strace_logs
