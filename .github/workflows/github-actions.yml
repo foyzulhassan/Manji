@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash
+        shell: bash -l {0}
 
     steps:
     # Setup Java environment in order to build the Android app.
@@ -25,7 +25,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y strace
 
     - name: Enable strace
-      uses: clonedSemicolon/setup-strace@v10
+      uses: clonedSemicolon/setup-strace@v3
 
     - name: Check which bash is used
       run: which bash
@@ -33,12 +33,12 @@ jobs:
     - name: Run CI logic
       run: echo "This should be traced"
 
-    - name: Try manual strace
-      run: |
-        echo "Trying direct strace..."
-        mkdir -p strace_logs
-        strace -tt -f -o strace_logs/manual.log bash -c "echo traced manually"
-        cat strace_logs/manual.log || echo "❌ strace failed (manual test)"
+    # - name: Try manual strace
+      # run: |
+        # echo "Trying direct strace..."
+        # mkdir -p strace_logs
+        # strace -tt -f -o strace_logs/manual.log bash -c "echo traced manually"
+        # cat strace_logs/manual.log || echo "❌ strace failed (manual test)"
 
     - uses: actions/setup-java@v1
       with:
