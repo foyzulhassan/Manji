@@ -33,6 +33,13 @@ jobs:
     - name: Run CI logic
       run: echo "This should be traced"
 
+    - name: Try manual strace
+      run: |
+        echo "Trying direct strace..."
+        mkdir -p strace_logs
+        strace -tt -f -o strace_logs/manual.log bash -c "echo traced manually"
+        cat strace_logs/manual.log || echo "❌ strace failed (manual test)"
+
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
@@ -67,7 +74,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: strace-logs
-        path: ${{ env.STRACE_OUT }}
+        path: strace_logs/
     
 #     # Run widget tests for our flutter project.
 #     - run: flutter test
