@@ -26,7 +26,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y strace
 
     - name: Enable strace
-      uses: clonedSemicolon/setup-strace@v3
+      uses: clonedSemicolon/setup-strace@v11
 
     - name: Check which bash is used
       run: which bash
